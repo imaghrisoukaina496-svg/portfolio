@@ -1,3 +1,9 @@
+
+
+https://github.com/user-attachments/assets/10dcb01a-d30c-4af2-a38d-37a1cec86bec
+
+
+
 # Portfolio — Soukaina Imaghri
 
 Portfolio personnel développé avec **React + Vite + TypeScript + Tailwind CSS**.
