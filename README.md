@@ -55,10 +55,6 @@ src/
 | `--g4`   | `#8aad5c` (vert clair)      |
 | `--g5`   | `#d4e89a` (vert très clair) |
 
-## 📸 Ajouter ta photo
-
-1. Place ton image dans `public/photo.jpg`
-2. Dans `src/pages/Home.tsx`, décommente la ligne avec `<img>` et supprime le `<span>SI</span>`
 
 ## 🌐 Déploiement Vercel
 
