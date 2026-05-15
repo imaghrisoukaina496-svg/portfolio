@@ -78,4 +78,15 @@ export const certifications: Certification[] = [
     skills: ['PHP 7', 'MVC', 'PDO', 'Architecture Multicouche', 'Sécurité'],
     status: 'active',
   },
+  {
+    title: 'Développement Front-End moderne avec React',
+    issuer: 'MLIAEdu',
+    issueDate: '2026-05-15',
+    category: 'PROGRAMMATION WEB',
+    score: 93,
+    progression: 100,
+    credentialId: '#26-cef301dc-6a0a-45c2-bbed-f5032727141b-801248',
+    skills: ['React', 'TypeScript', 'Tailwind CSS', 'Vite', 'Hooks'],
+    status: 'active',
+  },
 ]

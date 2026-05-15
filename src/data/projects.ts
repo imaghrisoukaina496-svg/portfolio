@@ -9,6 +9,13 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    title: 'SOS Campus',
+    description: 'Application web et mobile de gestion des urgences sur campus universitaire. Permet d\'envoyer des alertes SOS géolocalisées en temps réel, avec tableau de bord de supervision pour les agents de sécurité.',
+    tags: ['Android', 'Java', 'React.js', 'Node.js', 'Express.js', 'MySQL', 'JWT', 'REST API'],
+    repo: 'https://github.com/imaghrisoukaina496-svg/PROJET-SOS',
+    featured: true,
+  },
+  {
     title: 'JavaProjecttp1',
     description: 'Projet Java de travaux pratiques — exploration des fondamentaux de la programmation orientée objet en Java.',
     tags: ['Java', 'POO', 'TP'],

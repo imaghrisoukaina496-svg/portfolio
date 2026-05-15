@@ -21,22 +21,20 @@ export default function RootLayout() {
   ]
 
   return (
-    <div className="min-h-screen" style={{ background: 'var(--gbg)', color: 'var(--g1)' }}>
-      {/* NAV */}
-      <header
-        style={{
-          position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
-          background: scrolled ? 'rgba(248,250,242,0.95)' : 'rgba(248,250,242,0.8)',
-          backdropFilter: 'blur(12px)',
-          borderBottom: scrolled ? '1px solid var(--g5)' : '1px solid transparent',
-          transition: 'all 0.3s ease',
-        }}
-      >
+    <div style={{ minHeight: '100vh', background: 'var(--gbg)', color: 'var(--g1)' }}>
+
+      <header style={{
+        position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
+        background: scrolled ? 'rgba(248,250,242,0.95)' : 'rgba(248,250,242,0.8)',
+        backdropFilter: 'blur(12px)',
+        borderBottom: scrolled ? '1px solid var(--g5)' : '1px solid transparent',
+        transition: 'all 0.3s ease',
+      }}>
         <nav style={{
           maxWidth: '1000px', margin: '0 auto', padding: '0 1.5rem',
           height: '62px', display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         }}>
-          <NavLink to="/" style={{ textDecoration: 'none' }}>
+          <NavLink to="/" style={{ textDecoration: 'none' }} onClick={() => setMenuOpen(false)}>
             <span style={{
               fontFamily: '"Playfair Display", serif',
               fontWeight: 700, fontSize: '1.15rem', color: 'var(--g2)',
@@ -46,54 +44,45 @@ export default function RootLayout() {
             </span>
           </NavLink>
 
-          {/* Desktop links */}
-          <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}
-               className="hidden md:flex">
-            {navLinks.map(link => (
-              <NavLink
-                key={link.to}
-                to={link.to}
-                end={link.end}
-                style={({ isActive }) => ({
-                  textDecoration: 'none',
-                  fontSize: '0.82rem',
-                  fontWeight: 500,
-                  letterSpacing: '0.06em',
-                  textTransform: 'uppercase',
-                  color: isActive ? 'var(--g2)' : 'var(--g3)',
-                  borderBottom: isActive ? '2px solid var(--g3)' : '2px solid transparent',
-                  paddingBottom: '2px',
-                  transition: 'color 0.2s',
-                })}
-              >
-                {link.label}
-              </NavLink>
-            ))}
-          </div>
-
-          {/* Mobile hamburger */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '4px' }}
-            className="md:hidden"
             aria-label="Menu"
+            style={{
+              background: 'none',
+              border: '1px solid var(--g4)',
+              borderRadius: '8px',
+              cursor: 'pointer',
+              padding: '8px 10px',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '5px',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
           >
-            <div style={{ width: 22, height: 2, background: 'var(--g2)', marginBottom: 5, transition: 'all 0.3s',
-              transform: menuOpen ? 'rotate(45deg) translate(5px, 5px)' : 'none' }} />
-            <div style={{ width: 22, height: 2, background: 'var(--g2)', marginBottom: 5,
-              opacity: menuOpen ? 0 : 1, transition: 'all 0.3s' }} />
-            <div style={{ width: 22, height: 2, background: 'var(--g2)', transition: 'all 0.3s',
-              transform: menuOpen ? 'rotate(-45deg) translate(5px, -5px)' : 'none' }} />
+            <div style={{
+              width: 20, height: 2, background: 'var(--g2)', transition: 'all 0.3s',
+              transform: menuOpen ? 'rotate(45deg) translate(5px, 5px)' : 'none',
+            }} />
+            <div style={{
+              width: 20, height: 2, background: 'var(--g2)', transition: 'all 0.3s',
+              opacity: menuOpen ? 0 : 1,
+            }} />
+            <div style={{
+              width: 20, height: 2, background: 'var(--g2)', transition: 'all 0.3s',
+              transform: menuOpen ? 'rotate(-45deg) translate(5px, -5px)' : 'none',
+            }} />
           </button>
         </nav>
 
-        {/* Mobile menu */}
-        {menuOpen && (
-          <div style={{
-            background: 'var(--gbg)', borderTop: '1px solid var(--g5)',
-            padding: '1rem 1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem',
-          }}
-          className="md:hidden">
+        <div style={{
+          maxHeight: menuOpen ? '400px' : '0',
+          overflow: 'hidden',
+          transition: 'max-height 0.35s ease',
+          background: 'var(--gbg)',
+          borderTop: menuOpen ? '1px solid var(--g5)' : 'none',
+        }}>
+          <div style={{ display: 'flex', flexDirection: 'column', padding: menuOpen ? '0.5rem 0' : 0 }}>
             {navLinks.map(link => (
               <NavLink
                 key={link.to}
@@ -102,24 +91,28 @@ export default function RootLayout() {
                 onClick={() => setMenuOpen(false)}
                 style={({ isActive }) => ({
                   textDecoration: 'none',
+                  padding: '0.9rem 1.5rem',
                   fontSize: '0.9rem',
+                  letterSpacing: '0.06em',
+                  textTransform: 'uppercase',
                   fontWeight: isActive ? 600 : 400,
                   color: isActive ? 'var(--g2)' : 'var(--g3)',
+                  background: isActive ? 'rgba(0,0,0,0.03)' : 'transparent',
+                  borderLeft: isActive ? '3px solid var(--g3)' : '3px solid transparent',
+                  transition: 'all 0.15s',
                 })}
               >
                 {link.label}
               </NavLink>
             ))}
           </div>
-        )}
+        </div>
       </header>
 
-      {/* MAIN */}
       <main style={{ paddingTop: '62px' }}>
         <Outlet />
       </main>
 
-      {/* FOOTER */}
       <footer style={{
         borderTop: '1px solid var(--g5)',
         padding: '1.5rem',
